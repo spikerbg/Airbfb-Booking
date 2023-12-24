@@ -1,14 +1,11 @@
-import { useState } from 'react'
+import Layout from "./Layout/Layout"
+
 
 
 function App() {
-
   return (
     <>
-      <div className='bg-red-500'>
-        dsadsadsa
-      </div>
-      
+    <Layout />
     </>
   )
 }
