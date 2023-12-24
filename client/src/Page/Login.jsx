@@ -1,18 +1,21 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, Navigate, redirect } from "react-router-dom";
 import axios from "axios"
+import { AuthContext } from '../Context/authContext';
 
 export default function Login() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [errorForm, setErrorForm] = useState(false)
+  const {setUser} = useContext(AuthContext)
   
   const onSubmit = async (e) => {
     e.preventDefault();
   
     try {
-      await axios.post('/login', { email, password });
+      const data = await axios.post('/login', { email, password });
+      setUser(data)
       // Add any success handling logic here if needed
       setErrorForm(true)
       
@@ -22,7 +25,7 @@ export default function Login() {
       // You can also display an error message to the user or perform other actions
     }
   };
-if (redirect) {
+if (errorForm) {
   return <Navigate to={'/'} />
 }
 

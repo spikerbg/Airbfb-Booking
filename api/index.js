@@ -19,7 +19,7 @@ app.use(cors({
 app.get('/test', (req, res) => {
     res.json('test ok');
 });
-//eNfsR8XIe1YDmhF0
+
 app.post('/register', async (req,res) =>{
     const {name,email,password} = req.body;
     try{
@@ -43,7 +43,7 @@ app.post('/login', async (req, res) =>{
     if (passOk){
             jwt.sign({email:userDoc.email, id:userDoc._id}, jwtSecrect, {}, (err, token) =>{
                 if (err) throw err;
-                res.cookie('token', token).json('pass ok')
+                res.cookie('token', token).json('userDoc')
             })
     } else {
         res.status(422).json('pass not ok')
