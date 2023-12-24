@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 
 export default function Signup() {
+  const [name, setName] = useState("")
+  const [email ,setEmail] = useState("")
+  const [password, setPassword] = useState("");
+
+
   return (
 
     <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -31,6 +36,8 @@ export default function Signup() {
                 type="fullname"
                 name="fullname"
                 id="fullname"
+                value={name}
+                onChange={e => setName(e.target.value)}
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="Full Name"
                 required=""
@@ -47,6 +54,8 @@ export default function Signup() {
                 type="email"
                 name="email"
                 id="email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="name@company.com"
                 required=""
@@ -64,6 +73,8 @@ export default function Signup() {
                 name="password"
                 id="password"
                 placeholder="••••••••"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 required=""
               />
