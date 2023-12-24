@@ -1,11 +1,21 @@
 import React, { useState } from 'react'
 import { Link } from "react-router-dom";
+import axios from "axios"
 
 export default function Signup() {
   const [name, setName] = useState("")
   const [email ,setEmail] = useState("")
   const [password, setPassword] = useState("");
 
+  const onSubmit = (e) =>{
+    e.preventDefault()
+    axios.post('/register', {
+      name,
+      email,
+      password,
+    })
+
+  }
 
   return (
 
@@ -24,7 +34,7 @@ export default function Signup() {
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Sign up account
           </h1>
-          <form className="space-y-4 md:space-y-6" action="#">
+          <form className="space-y-4 md:space-y-6" onSubmit={onSubmit}>
           <div>
               <label
                 htmlFor="Full name"
@@ -33,9 +43,9 @@ export default function Signup() {
                 Full name
               </label>
               <input
-                type="fullname"
-                name="fullname"
-                id="fullname"
+                type="name"
+                name="name"
+                id="name"
                 value={name}
                 onChange={e => setName(e.target.value)}
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -110,7 +120,7 @@ export default function Signup() {
               type="submit"
               className="w-full text-white bg-primary hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
             >
-              Sign in
+              Sign up
             </button>
             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
               You have account here?{" "}
