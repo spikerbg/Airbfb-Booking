@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
+import { Link, Navigate, redirect } from "react-router-dom";
 import axios from "axios"
 
 export default function Login() {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [errorForm, setErrorForm] = useState(false)
   
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -13,12 +14,17 @@ export default function Login() {
     try {
       await axios.post('/login', { email, password });
       // Add any success handling logic here if needed
+      setErrorForm(true)
+      
     } catch (error) {
       // Handle the error here
       console.error('Error submitting form:', error);
       // You can also display an error message to the user or perform other actions
     }
   };
+if (redirect) {
+  return <Navigate to={'/'} />
+}
 
   return (
     <section className="bg-gray-50 dark:bg-gray-900">
