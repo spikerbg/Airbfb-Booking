@@ -7,15 +7,23 @@ export default function Signup() {
   const [email ,setEmail] = useState("")
   const [password, setPassword] = useState("");
 
-  const onSubmit = (e) =>{
-    e.preventDefault()
-    axios.post('/register', {
-      name,
-      email,
-      password,
-    })
-
-  }
+  const onSubmit = async (e) => {
+    e.preventDefault();
+  
+    try {
+      await axios.post('/register', {
+        name,
+        email,
+        password,
+      });
+  
+      // Handle success or any other logic after the request
+      console.log('Registration successful!');
+    } catch (error) {
+      // Handle errors
+      console.error('Registration failed:', error.message);
+    }
+  };
 
   return (
 
