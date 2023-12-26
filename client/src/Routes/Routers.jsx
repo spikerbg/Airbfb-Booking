@@ -6,6 +6,7 @@ import Account from "../Page/Account";
 
 
 
+
 export default function Routers() {
   return (
    <Routes>
@@ -14,6 +15,7 @@ export default function Routers() {
     <Route path="/login" element={<Login />} />
     <Route path="/signup" element={<Signup />} />
     <Route path="/account/:subpage?" element={<Account />} />
+    <Route path="/account/:subpage/:action" element={<Account />} />
    </Routes>
   )
 }
