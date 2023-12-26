@@ -4,11 +4,13 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const User = require('./models/User');
+const cookieParser = require('cookie-parser')
 require('dotenv').config()
 const app = express();
 const bcryptSalt = bcrypt.genSaltSync(10)
 const jwtSecrect = "ewp33}SQ:4;o"
 app.use(express.json())
+app.use(cookieParser())
 app.use(cors({
     credentials: true,
     origin: 'http://localhost:5173',
@@ -54,6 +56,11 @@ app.post('/login', async (req, res) =>{
    }else{
     res.json('not found')
    }
+})
+
+app.get('/profile', (req,res) =>{
+    const {token} = req.cookies;
+    res.json({token})
 })
 
 const port = 3000;
