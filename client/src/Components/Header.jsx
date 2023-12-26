@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { FaSearch } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { UserContext } from '../Context/UserContext';
 
 
@@ -8,6 +8,18 @@ import { UserContext } from '../Context/UserContext';
 
 export default function Header() {
   const { user } = useContext(UserContext);
+  const location = useLocation();
+
+  // List of routes where the header should be hidden
+  const routesWithoutHeader = ['/login', '/signup'];
+
+  // Check if the current route is in the list
+  const isHeaderHidden = routesWithoutHeader.includes(location.pathname);
+
+  if (isHeaderHidden) {
+    // Return null or an empty div if the header should be hidden
+    return null;
+  }
   return (
     <div>
       <header className='p-4 align-middle flex justify-between border-b shadow-sm bg-white'>
