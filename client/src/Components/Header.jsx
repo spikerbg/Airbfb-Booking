@@ -1,13 +1,21 @@
 import { useContext } from 'react'
 import { FaSearch } from "react-icons/fa";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { UserContext } from '../Context/UserContext';
+import axios from "axios"
 
 
 
 
 export default function Header() {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate()
+  const logout = async () =>{
+    await axios.post('/logout')
+    setTimeout(() => {navigate("/");}, 0)
+    setUser(null)
+    
+ }
   const location = useLocation();
 
   // List of routes where the header should be hidden
@@ -37,6 +45,7 @@ export default function Header() {
         <FaSearch />
         </button>
         </div>
+        <div className='flex gap-2 align-middle'>
       <Link to={user?'/account':'/login'} className='flex items-center gap-2 border border-gray-300 rounded-full py-2 px-4 shadow-sm shadow-gray-300 '>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
   <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -52,7 +61,13 @@ export default function Header() {
         
         )}
         </Link>
-        
+        {user && user.name && (
+        <button onClick={logout} className='max-w-sm mt-2 text-white bg-primary hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800'>
+            Logout
+            </button>
+             )}
+
+        </div>
       </header>
     </div>
   )
