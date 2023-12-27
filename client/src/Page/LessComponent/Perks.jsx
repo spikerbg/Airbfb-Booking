@@ -1,6 +1,14 @@
 import React from 'react'
 
-export default function Perks(selected, onChange) {
+export default function Perks({selected, onChange}) {
+  const handleClick = (e) => {
+    const {checked, name} = e.target
+    if (checked) {
+      onChange([...selected,name]);
+    } else {
+      onChange([...selected.filter(selectedName => selectedName !== name)]);
+    }
+  }
   return (
     <div className="grid grid-cols-2 gap-2 mb-4">
               <div className="flex gap-2 items-center">
@@ -8,6 +16,8 @@ export default function Perks(selected, onChange) {
                   id="checkbox-2"
                   type="checkbox"
                   defaultValue=""
+                  name='Wifi'
+                  onChange={handleClick}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600"
                 />
                 <label
@@ -26,6 +36,8 @@ export default function Perks(selected, onChange) {
                   id="checkbox-2"
                   type="checkbox"
                   defaultValue=""
+                  name='Parking'
+                  onChange={handleClick}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600"
                 />
                 <label
@@ -44,6 +56,8 @@ export default function Perks(selected, onChange) {
                   id="checkbox-2"
                   type="checkbox"
                   defaultValue=""
+                  name='TV'
+                  onChange={handleClick}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600"
                 />
                 <label
@@ -62,6 +76,8 @@ export default function Perks(selected, onChange) {
                   id="checkbox-2"
                   type="checkbox"
                   defaultValue=""
+                  name='Pets'
+                  onChange={handleClick}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600"
                 />
                 <label
@@ -81,6 +97,8 @@ export default function Perks(selected, onChange) {
                   id="checkbox-2"
                   type="checkbox"
                   defaultValue=""
+                  name='PrivateEnterance'
+                                  onChange={handleClick}
                   className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600"
                 />
                 <label
