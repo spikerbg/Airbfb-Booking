@@ -12,6 +12,7 @@ const bcryptSalt = bcrypt.genSaltSync(10)
 const jwtSecrect = "ewp33}SQ:4;o"
 app.use(express.json())
 app.use(cookieParser())
+app.use('/upload', express.static(__dirname+'/upload'))
 app.use(cors({
     credentials: true,
     origin: 'http://localhost:5173',
@@ -79,12 +80,12 @@ app.post ('/logout', (req,res) =>{
 console.log({__dirname})
 app.post('/upload-bt-link', async (req,res) =>{
  const {link} = req.body
- const newName = Date.now() + '.jpg'
+ const newName = 'photo' + Date.now() + '.jpg'
  await imageDownloader.image({
     url: link,
-    dest: __dirname + '/uploads' +newName,
+    dest: __dirname + '/upload/' +newName,
  })
- res.json(__dirname + '/uploads' +newName)
+ res.json(newName)
 })
 
 const port = 3000;

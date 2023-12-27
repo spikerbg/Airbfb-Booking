@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Perks from './LessComponent/Perks'
+import axios from "axios"
 
 export default function PlacesPage() {
   const { action } = useParams()
@@ -15,8 +16,13 @@ export default function PlacesPage() {
   const [cehckOut, setCheckOut] = useState("")
   const [maxGuests, setMaxGuests] = useState(1)
 
-  const addPhotoByLink = () =>{
-    
+  const addPhotoByLink = async (e) =>{
+    e.preventDefault();
+    const {data:filename} = await axios.post('/upload-bt-link', {link: photoLink})
+    setAddedPhotos(prev => {
+      return [...prev,filename]
+    })
+    setPhotoLink('')
   }
   return (
     <div>
@@ -80,10 +86,15 @@ export default function PlacesPage() {
                 onChange={e => setPhotoLink(e.target.value)}
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               />
-              <button className='whitespace-nowrap max-w-sm text-white bg-primary hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-sm px-4 py-1.5 text-center'>Add photo</button>
+              <button onClick={addPhotoByLink} className='whitespace-nowrap max-w-sm text-white bg-primary hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-sm px-4 py-1.5 text-center'>Add photo</button>
             </div>
-            <div className='mt-2 grid grid-cols-3 lg:grid-cols-6 md:grid-cols-4'>
-              <button className='flex border gap-1 bg-transparent rounded-2xl p-8 text-2xl text-gray-600 mx-auto'>
+            <div className='mt-2 gap-2 grid grid-cols-3 lg:grid-cols-6 md:grid-cols-4'>
+              {addedPhotos.length > 0 && addedPhotos.map(link =>(
+                <div>
+                  <img className="rounded-2xl"  src={'http://localhost:3000/upload/'+link} alt="" />
+                </div>
+              ))}
+              <button className='flex border gap-1 bg-transparent rounded-2xl p-2 text-2xl text-gray-600 mx-auto'>
                 Upload <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
                 </svg>
