@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken')
 const User = require('./models/User');
 const imageDownloader = require('image-downloader');
+const multer  = require('multer')
+const fs = require('fs')
 const cookieParser = require('cookie-parser')
 require('dotenv').config()
 const app = express();
@@ -77,7 +79,7 @@ app.post ('/logout', (req,res) =>{
     res.cookie('token', '').json(true)
 })
 
-console.log({__dirname})
+
 app.post('/upload-bt-link', async (req,res) =>{
  const {link} = req.body
  const newName = 'photo' + Date.now() + '.jpg'
@@ -86,6 +88,21 @@ app.post('/upload-bt-link', async (req,res) =>{
     dest: __dirname + '/upload/' +newName,
  })
  res.json(newName)
+})
+
+const photosMiddleware = multer({dest:'/upload'})
+app.post('/upload', photosMiddleware.array('photos', 100) , (req,res) =>{
+
+const uploadedFiles = []
+for(let i =0; i < req.files.length; i++){
+    const {path, originalname} = req.files[i];
+   const parts = originalname.split('.')
+   const ext = parts[parts.length -1]
+    const newPath = path + '.' + ext
+    fs.renameSync(path, newPath)
+    uploadedFiles.push(newPath.replace('upload/',''))
+}
+res.json(uploadedFiles)
 })
 
 const port = 3000;
