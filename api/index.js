@@ -14,7 +14,7 @@ const bcryptSalt = bcrypt.genSaltSync(10)
 const jwtSecrect = "ewp33}SQ:4;o"
 app.use(express.json())
 app.use(cookieParser())
-app.use('/upload', express.static(__dirname+'/upload'))
+app.use('/uploads', express.static(__dirname+'/uploads'))
 app.use(cors({
     credentials: true,
     origin: 'http://localhost:5173',
@@ -85,25 +85,30 @@ app.post('/upload-bt-link', async (req,res) =>{
  const newName = 'photo' + Date.now() + '.jpg'
  await imageDownloader.image({
     url: link,
-    dest: __dirname + '/upload/' +newName,
+    dest: __dirname + '/uploads/' +newName,
  })
  res.json(newName)
 })
 
-const photosMiddleware = multer({dest:'/upload'})
-app.post('/upload', photosMiddleware.array('photos', 100) , (req,res) =>{
+const photosMiddleware = multer({ dest: 'uploads/' });
 
-const uploadedFiles = []
-for(let i =0; i < req.files.length; i++){
-    const {path, originalname} = req.files[i];
-   const parts = originalname.split('.')
-   const ext = parts[parts.length -1]
-    const newPath = path + '.' + ext
-    fs.renameSync(path, newPath)
-    uploadedFiles.push(newPath.replace('upload/',''))
-}
-res.json(uploadedFiles)
-})
+app.post('/upload', photosMiddleware.array('photos', 100), (req, res) => {
+  const uploadedFiles = [];
+
+  for (let i = 0; i < req.files.length; i++) {
+    const { path, originalname } = req.files[i];
+    const parts = originalname.split('.');
+    const ext = parts[parts.length - 1];
+    const newPath = path + '.' + ext;
+
+    fs.renameSync(path, newPath);
+
+    uploadedFiles.push(newPath.replace('uploads/', ''));
+
+  }
+
+  res.json(uploadedFiles);
+});
 
 const port = 3000;
 app.listen(port, () => {

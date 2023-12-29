@@ -24,13 +24,21 @@ export default function PlacesPage() {
     })
     setPhotoLink('')
   }
-  const uploadPhoto = (e) =>{
-   const files = e.target.files;
-   const data = new FormData()
-   for (let i = 0; i < files.length; i++){
-     data.append('photos', files[i])
+  // const uploadPhoto = (e) =>{
+  //  const files = e.target.files;
+  //  const data = new FormData()
+  //  for (let i = 0; i < files.length; i++){
+  //    data.append('photos', files[i])
 
-   }
+  //  }
+
+  const uploadPhoto = (e) =>{
+    const files = e.target.files;
+    const data = new FormData()
+    if (e.target.files && e.target.files.length > 0 ){
+      data.append('photos', files[0])
+    }
+  
     axios.post('/upload', data, {
     headers:{'Content-Type':'multipart/from'}
    }). then(response =>{
@@ -108,7 +116,7 @@ export default function PlacesPage() {
             <div className='mt-2 gap-2 grid grid-cols-3 lg:grid-cols-6 md:grid-cols-4'>
               {addedPhotos.length > 0 && addedPhotos.map((link, index) => (
                 <div key={index} className='h-32 flex'>
-                  <img className="rounded-2xl w-full object-cover" src={'http://localhost:3000/upload/' + link} alt="" />
+                  <img className="rounded-2xl w-full object-cover" src={'http://localhost:3000/uploads/' + link} alt="" />
                 </div>
               ))}
               <label className='h-32 cursor-pointer flex items-center border gap-1 bg-transparent rounded-2xl p-2 text-2xl text-gray-600 mx-auto' htmlFor="fileInput">
