@@ -26,13 +26,13 @@ export default function PlacesFormPage() {
             setTitle(data.title)
             setAddress(data.address)
             // setAddedPhotos(data.addedPhotos)
-            setPhotoLink(data.photoLink)
             setDescription(data.description)
             setPerks(data.perks)
             setExtraInfo(data.extraInfo)
             setCheckIn(data.checkIn)
             setCheckOut(data.cehckOut)
             setMaxGuests(data.maxGuests)
+            console.log("addedPhotos inside useEffect:", addedPhotos);
         })
     },[id])
 
@@ -40,9 +40,11 @@ export default function PlacesFormPage() {
         e.preventDefault();
         const { data: filename } = await axios.post('/upload-bt-link', { link: photoLink })
         setAddedPhotos(prev => {
+            console.log("Previous addedPhotos:", prev);
             return [...prev, filename]
         })
         setPhotoLink('')
+        console.log("addedPhotos after adding photo by link:", addedPhotos);
     }
     // const uploadPhoto = (e) =>{
     //  const files = e.target.files;
@@ -60,12 +62,13 @@ export default function PlacesFormPage() {
         }
 
         axios.post('/upload', data, {
-            headers: { 'Content-Type': 'multipart/from' }
-        }).then(response => {
-            const { data: filenames } = response
+            headers: {'Content-type':'multipart/form-data'}
+          }).then(response => {
+            const {data:filenames} = response;
             setAddedPhotos(prev => {
-                return [...prev, ...filenames]
+              return [...prev, ...filenames];
             })
+            console.log("addedPhotos after uploading photo:", addedPhotos);
         })
     }
 
@@ -145,7 +148,7 @@ export default function PlacesFormPage() {
                 <div className='mt-2 gap-2 grid grid-cols-3 lg:grid-cols-6 md:grid-cols-4'>
                     {addedPhotos.length > 0 && addedPhotos.map((link, index) => (
                         <div key={index} className='h-32 flex'>
-                            <img className="rounded-2xl w-full object-cover" src={'http://localhost:3000/uploads/' + link} alt="" />
+                            <img className="rounded-2xl w-full object-cover" src={'http://localhost:3000/' + link} alt="" />
                         </div>
                     ))}
                     <label className='h-32 cursor-pointer flex items-center border gap-1 bg-transparent rounded-2xl p-2 text-2xl text-gray-600 mx-auto' htmlFor="fileInput">
