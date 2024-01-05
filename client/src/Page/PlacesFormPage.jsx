@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Perks from './LessComponent/Perks'
 import axios from "axios"
 import AccountNav from '../AccountNav'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 
 export default function PlacesFormPage() {
+    const {id} = useParams()
     const [title, setTitle] = useState("")
     const [address, setAddress] = useState("")
     const [addedPhotos, setAddedPhotos] = useState([])
@@ -16,6 +17,24 @@ export default function PlacesFormPage() {
     const [cehckOut, setCheckOut] = useState("")
     const [maxGuests, setMaxGuests] = useState(1)
     const [redirect, setRedirect] = useState(false);
+    useEffect(() =>{
+        if (!id){
+            return
+        }
+        axios.get('/places/'+id).then(response  =>{
+            const {data} = response;
+            setTitle(data.title)
+            setAddress(data.address)
+            // setAddedPhotos(data.addedPhotos)
+            setPhotoLink(data.photoLink)
+            setDescription(data.description)
+            setPerks(data.perks)
+            setExtraInfo(data.extraInfo)
+            setCheckIn(data.checkIn)
+            setCheckOut(data.cehckOut)
+            setMaxGuests(data.maxGuests)
+        })
+    },[id])
 
     const addPhotoByLink = async (e) => {
         e.preventDefault();
@@ -50,21 +69,30 @@ export default function PlacesFormPage() {
         })
     }
 
-    const addNewPlace = async (e) => {
+    const savePlace = async (e) => {
         e.preventDefault()
-        await axios.post('/places', {
+        const placeData = {
             title, address, addedPhotos,
-            photoLink, description, perks, extraInfo,
-            checkIn, cehckOut, maxGuests
-        })
-        setRedirect(true)
+                photoLink, description, perks, extraInfo,
+                checkIn, cehckOut, maxGuests
+        }
+        if (id) {
+            await axios.put('/places/:id', {
+                id, ...placeData
+            })
+            setRedirect(true)
+        } else {
+            await axios.post('/places', placeData)
+            setRedirect(true)
+        }
+   
     }
 
 
     return (
         <div>
             <AccountNav />
-            <form className="max-w-lg mx-auto" onSubmit={addNewPlace}>
+            <form className="max-w-lg mx-auto" onSubmit={savePlace}>
                 <div className="mb-5">
                     <label
                         htmlFor="base-input"
