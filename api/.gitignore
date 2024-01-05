@@ -1,5 +1,5 @@
 node_modules/
 node_modules
-upload/
-upload
+uploads/
+uploads
 *.env
