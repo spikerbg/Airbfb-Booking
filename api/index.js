@@ -125,6 +125,14 @@ app.post ('/places', (req,res) =>{
 
 })
 
+app.get('/places', (req,res) =>{
+  const {token} = req.cookies;
+  jwt.verify(token, jwtSecrect, {}, async (err, userData) => {
+    const {id} = userData;
+    res.json( await Place.find({owner:id}) );
+  });
+});
+
 const port = 3000;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
