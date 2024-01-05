@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Perks from './LessComponent/Perks'
 import axios from "axios"
 import AccountNav from '../AccountNav'
+import { Navigate } from 'react-router-dom'
 
 export default function PlacesFormPage() {
     const [title, setTitle] = useState("")
@@ -14,6 +15,7 @@ export default function PlacesFormPage() {
     const [checkIn, setCheckIn] = useState("")
     const [cehckOut, setCheckOut] = useState("")
     const [maxGuests, setMaxGuests] = useState(1)
+    const [redirect, setRedirect] = useState(false);
 
     const addPhotoByLink = async (e) => {
         e.preventDefault();
@@ -55,9 +57,10 @@ export default function PlacesFormPage() {
             photoLink, description, perks, extraInfo,
             checkIn, cehckOut, maxGuests
         })
-
-
+        setRedirect(true)
     }
+
+
     return (
         <div>
             <AccountNav />
@@ -129,15 +132,18 @@ export default function PlacesFormPage() {
                 <div>
                     <label
                         htmlFor="base-input"
-                        type="text"
-                        id="base-input"
                         className="block mb-2 text-2xl mt-4"
-                        value={description}
-                        onChange={e => setDescription(e.target.value)}
                     >
                         Description
                     </label>
-                    <textarea id="message" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Write more information for your apartment..."></textarea>
+                    <textarea
+                        id="message"
+                        rows="4"
+                        className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                        value={description}
+                        onChange={e => setDescription(e.target.value)}
+                        placeholder="Write more information for your apartment..."
+                    ></textarea>
                 </div>
                 <label
                     htmlFor="base-input"
@@ -158,15 +164,14 @@ export default function PlacesFormPage() {
                 >
                     Extra info
                 </label>
-                <label
-                    htmlFor="base-input"
-                    className="block mb-2 text-sm font-medium text-gray-900"
+                <textarea
+                    id="message"
+                    rows="4"
+                    className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                     value={extraInfo}
                     onChange={e => setExtraInfo(e.target.value)}
-                >
-                    House rules,etc
-                </label>
-                <textarea id="message" rows="4" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500" placeholder="More about your rules here..."></textarea>
+                    placeholder="House rules, etc."
+                ></textarea>
                 <label className="block mb-2 text-2xl mt-4">
                     Check in and out times, max guests
                 </label>
