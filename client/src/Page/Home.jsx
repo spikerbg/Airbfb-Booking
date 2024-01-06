@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
+import axios from 'axios'
 
 export default function Home() {
+  const [places,setPlaces] = useState([])
+useEffect(() =>{
+  axios.get('/allplaces').then(response  =>{
+  setPlaces(response.data)
+  })
+
+},[])
+
   return (
-    <div>
-      <p className='p-6'>test</p>
+    <div className='mt-8 gap-4 gap-y-8 px-8 grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4'>
+    {places.length > 0 &&
+        places.map((place, index) => (
+          <div key={index}>
+            <div className='bg-gray-300 rounded-2xl flex mb-2'>
+            <img className='rounded-2xl object-fill' src={'http://localhost:3000/'+place.photos?.[0]} alt="photos" />
+
+            </div>
+            <div></div>
+            <h2 className='text-md truncate'>{place.title}</h2>
+            <h3 className='text-sm font-bold'>{place.address}</h3>
+          </div>
+        ))}
     </div>
   )
 }

@@ -91,7 +91,7 @@ app.post('/upload-bt-link', async (req,res) =>{
  res.json(newName)
 })
 
-const photosMiddleware = multer({ dest: 'uploads/' });
+const photosMiddleware = multer({ dest: '/uploads' });
 
 app.post('/upload', photosMiddleware.array('photos', 100), (req, res) => {
   const uploadedFiles = [];
@@ -104,7 +104,7 @@ app.post('/upload', photosMiddleware.array('photos', 100), (req, res) => {
 
     fs.renameSync(path, newPath);
 
-    uploadedFiles.push(newPath.replace('uploads/', ''));
+    uploadedFiles.push(newPath.replace('/uploads', ''));
 
   }
 
@@ -151,6 +151,10 @@ app.put('/places/:id', async (req,res) =>{
     res.json('ok')
   }
  })
+})
+
+app.get('/allplaces', async (req,res) =>{
+  res.json( await Place.find() );
 })
 
 const port = 3000;
