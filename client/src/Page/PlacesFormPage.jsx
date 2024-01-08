@@ -16,6 +16,7 @@ export default function PlacesFormPage() {
     const [checkIn, setCheckIn] = useState("")
     const [cehckOut, setCheckOut] = useState("")
     const [maxGuests, setMaxGuests] = useState(1)
+    const [price, setPrice] = useState(60)
     const [redirect, setRedirect] = useState(false);
     useEffect(() =>{
         if (!id){
@@ -32,6 +33,7 @@ export default function PlacesFormPage() {
             setCheckIn(data.checkIn)
             setCheckOut(data.cehckOut)
             setMaxGuests(data.maxGuests)
+            setPrice(data.price)
             console.log("addedPhotos inside useEffect:", addedPhotos);
         })
     },[id])
@@ -51,7 +53,7 @@ export default function PlacesFormPage() {
         const placeData = {
             title, address, addedPhotos,
               description, perks, extraInfo,
-                checkIn, cehckOut, maxGuests
+                checkIn, cehckOut, maxGuests, price,
         }
         if (id) {
             await axios.put('/places/:id', {
@@ -67,7 +69,7 @@ export default function PlacesFormPage() {
 
 
     return (
-        <div>
+        <div className='pb-12'>
             <AccountNav />
             <form className="max-w-lg mx-auto" onSubmit={savePlace}>
                 <div className="mb-5">
@@ -187,6 +189,14 @@ export default function PlacesFormPage() {
                         />
                     </div>
                 </div>
+                <div>
+                        <h3 className='mt-2 mb-2'>Price per Night</h3>
+                        <input type="number"
+                            className='w-full border mb-2 text-2xl mt-4 bg-gray-100'
+                            value={price}
+                            onChange={e => setPrice(e.target.value)}
+                        />
+                    </div>
                 <div className='my-4'>
                     <button className='w-full text-white bg-primary hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center'>Save</button>
                 </div>
