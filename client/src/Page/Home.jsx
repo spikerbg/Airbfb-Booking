@@ -16,12 +16,15 @@ useEffect(() =>{
         places.map((place, index) => (
           <div key={index}>
             <div className='bg-gray-300 rounded-2xl flex mb-2'>
-            <img className='rounded-2xl object-fill' src={'http://localhost:3000/'+place.photos?.[0]} alt="photos" />
+            <img className='rounded-2xl object-fill' src={'http://localhost:3000/uploads/'+place.photos?.[0]} alt="photos" />
 
             </div>
             <div></div>
-            <h2 className='text-md truncate'>{place.title}</h2>
             <h3 className='text-sm font-bold'>{place.address}</h3>
+            <h2 className='text-md text-gray-500'>{place.title}</h2>
+            <div>
+             <span className='font-bold'>{place.price}EUR</span> per night
+            </div>
           </div>
         ))}
     </div>
