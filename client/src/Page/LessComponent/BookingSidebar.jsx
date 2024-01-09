@@ -1,6 +1,23 @@
+import { useState } from "react"
+import { differenceInCalendarDays } from "date-fns";
 
 
 export default function BookingSidebar({place}) {
+    const [checkIn, setCheckIn] = useState('')
+    const [checkOut, setCheckOut] = useState('')
+    const [numberOfGuests, setNumberOfGuests] = useState(1)
+    const [name,setName] = useState('')
+    const [phone,setPhone] = useState('')
+    let numberOfNight = 0
+    if (checkIn && checkOut) {
+        numberOfNight = differenceInCalendarDays(new Date(checkOut),new Date (checkIn))
+    }
+
+    const onSubmit = async (e) =>{
+        e.preventDefault()
+    }
+
+
   return (
     <div>
     <div className="bg-white shadow p-4 rounded-2xl gap-4">
@@ -11,16 +28,16 @@ export default function BookingSidebar({place}) {
             <label>Check in:</label>
             <input type="date"
                 className='w-full border mb-2 text-2xl mt-4 bg-gray-100'
-                // value={price}
-                // onChange={e => setPrice(e.target.value)}
+                value={checkIn}
+                onChange={e => setCheckIn(e.target.value)}
             />
         </div>
         <div className="p-4">
             <label>Check Out:</label>
             <input type="date"
                 className='w-full border mb-2 text-2xl mt-4 bg-gray-100'
-                // value={price}
-                // onChange={e => setPrice(e.target.value)}
+                value={checkOut}
+                onChange={e => setCheckOut(e.target.value)}
             />
         </div>
         </div>
@@ -28,12 +45,36 @@ export default function BookingSidebar({place}) {
             <label>Number of Guests:</label>
             <input type="number"
                 className='w-full border mb-2 text-2xl mt-4 bg-gray-100'
-                // value={1}
-                // onChange={e => setPrice(e.target.value)}
+                value={numberOfGuests}
+                onChange={e => setNumberOfGuests(e.target.value)}
             />
         </div>
-        <button className="w-full mt-4 text-white bg-primary hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+        {numberOfNight >0 && (
+            <div className="p-4">
+            <label>Full name:</label>
+            <input type="text"
+                className='w-full border mb-2 text-2xl mt-4 bg-gray-100'
+                placeholder="Ivan Ivanov"
+                value={name}
+                onChange={e => setName(e.target.value)}
+            />
+             <label>Phone:</label>
+            <input type="text"
+                className='w-full border mb-2 text-2xl mt-4 bg-gray-100'
+                placeholder="089532142"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                required
+                value={phone}
+                onChange={e => setPhone(e.target.value)}
+            />
+        </div>
+        
+        )}
+        <button onSubmit={onSubmit} className="w-full mt-4 text-white bg-primary hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
             Book this Place
+            {numberOfNight > 0 &&(
+              <span> {numberOfNight * place.price}EUR</span>
+            )}
         </button>
 
     </div>
