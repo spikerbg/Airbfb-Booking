@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { differenceInCalendarDays } from "date-fns";
 import axios from 'axios'
+import {UserContext} from '../../Context/UserContext'
 
 
 export default function BookingSidebar({place}) {
@@ -10,6 +11,13 @@ export default function BookingSidebar({place}) {
     const [name,setName] = useState('')
     const [phone,setPhone] = useState('')
     const [redirect, setRedirect] = useState('')
+    const {user} = useContext(UserContext)
+    useEffect(() =>{
+        if (user){
+            setName(user.name)
+        }
+    },[user])
+
     let numberOfNight = 0
     if (checkIn && checkOut) {
         numberOfNight = differenceInCalendarDays(new Date(checkOut),new Date (checkIn))
