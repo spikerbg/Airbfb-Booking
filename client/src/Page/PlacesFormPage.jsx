@@ -14,7 +14,7 @@ export default function PlacesFormPage() {
     const [perks, setPerks] = useState([])
     const [extraInfo, setExtraInfo] = useState("")
     const [checkIn, setCheckIn] = useState("")
-    const [cehckOut, setCheckOut] = useState("")
+    const [checkOut, setCheckOut] = useState("")
     const [maxGuests, setMaxGuests] = useState(1)
     const [price, setPrice] = useState(60)
     const [redirect, setRedirect] = useState(false);
@@ -31,7 +31,7 @@ export default function PlacesFormPage() {
             setPerks(data.perks)
             setExtraInfo(data.extraInfo)
             setCheckIn(data.checkIn)
-            setCheckOut(data.cehckOut)
+            setCheckOut(data.checkOut)
             setMaxGuests(data.maxGuests)
             setPrice(data.price)
         })
@@ -52,7 +52,7 @@ export default function PlacesFormPage() {
         const placeData = {
             title, address, addedPhotos,
               description, perks, extraInfo,
-                checkIn, cehckOut, maxGuests, price,
+                checkIn, checkOut, maxGuests, price,
         }
         if (id) {
             await axios.put('/places/:id', {
@@ -175,7 +175,7 @@ export default function PlacesFormPage() {
                         <input type="text"
                             className='w-full border mb-2 text-2xl mt-4'
                             placeholder='14:00'
-                            value={cehckOut}
+                            value={checkOut}
                             onChange={e => setCheckOut(e.target.value)}
                         />
                     </div>
