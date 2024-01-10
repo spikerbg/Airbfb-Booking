@@ -34,7 +34,6 @@ export default function PlacesFormPage() {
             setCheckOut(data.cehckOut)
             setMaxGuests(data.maxGuests)
             setPrice(data.price)
-            console.log("addedPhotos inside useEffect:", addedPhotos);
         })
     },[id])
 
@@ -71,7 +70,7 @@ export default function PlacesFormPage() {
     return (
         <div className='pb-12'>
             <AccountNav />
-            <form className="max-w-lg mx-auto" onSubmit={savePlace}>
+            <form className="max-w-2xl mx-auto" onSubmit={savePlace}>
                 <div className="mb-5">
                     <label
                         htmlFor="base-input"
