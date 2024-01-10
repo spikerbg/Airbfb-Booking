@@ -6,6 +6,8 @@ import Account from "../Page/Account";
 import PlacesPage from "../Page/PlacesPage";
 import PlacesFormPage from "../Page/PlacesFormPage";
 import ListingPage from "../Page/ListingPage";
+import BookingPage from "../Page/BookingPage";
+import ListingBooking from "../Page/LessComponent/ListingBooking";
 
 
 
@@ -22,6 +24,8 @@ export default function Routers() {
     <Route path="/account/places/new" element={<PlacesFormPage />} />
     <Route path="/account/places/:id" element={<PlacesFormPage />} />
     <Route path="/place/:id" element={<ListingPage />} />
+    <Route path="/account/bookings/" element={<BookingPage />} />
+    <Route path="/account/bookings/:id" element={<ListingBooking />} />
    </Routes>
   )
 }
