@@ -164,9 +164,10 @@ app.post('/booking', (req,res) =>{
     Booking.create({
       place,checkIn,checkOut,
     numberOfGuests,name,phone,price
-    }).then((err,doc) =>{
-      if(err) throw err
-      res.json(doc)
+    }).then((doc) =>{
+       res.json(doc)
+    }).catch((err) =>{
+      throw err
     })
 })
 
