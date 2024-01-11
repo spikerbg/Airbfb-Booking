@@ -41,10 +41,10 @@ export default function ListingGallery({place}) {
         </div>
         <div className="grid gap-2 overflow-hidden">
             {place.photos?.[1] && (
-                <img onClick={() => setShowAllPhotos(true)} className="cursor-pointer" src={'http://localhost:3000/uploads/' + place.photos[1]} alt=""></img>
+                <img onClick={() => setShowAllPhotos(true)} className="object-cover cursor-pointer" src={'http://localhost:3000/uploads/' + place.photos[1]} alt=""></img>
             )}
             {place.photos?.[2] && (
-                <img onClick={() => setShowAllPhotos(true)} className="cursor-pointer" src={'http://localhost:3000/uploads/' + place.photos[2]} alt=""></img>
+                <img onClick={() => setShowAllPhotos(true)} className="object-cover cursor-pointer" src={'http://localhost:3000/uploads/' + place.photos[2]} alt=""></img>
             )}
         </div>
         <button onClick={() => setShowAllPhotos(true)} className="absolute buttom-8 right-0 py-2 px-4 bg-white rounded-2xl shadow shadow-md shadow-gray-300">Show more photos</button>
