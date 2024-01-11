@@ -13,7 +13,7 @@ useEffect(() =>{
 },[])
 
   return (
-    <div className='mt-8 gap-4 gap-y-8 px-8 grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4'>
+    <div className='my-8 gap-4 gap-y-8 px-8 grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4'>
     {places.length > 0 &&
         places.map((place, index) => (
 
