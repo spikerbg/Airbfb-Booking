@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Perks from './LessComponent/Perks'
 import axios from "axios"
 import AccountNav from '../AccountNav'
-import { Navigate, useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 import PhotosUploader from './LessComponent/PhotosUploader'
 
 export default function PlacesFormPage() {
@@ -17,7 +17,7 @@ export default function PlacesFormPage() {
     const [checkOut, setCheckOut] = useState("")
     const [maxGuests, setMaxGuests] = useState(1)
     const [price, setPrice] = useState(60)
-    const [redirect, setRedirect] = useState(false);
+    const navigate = useNavigate()
     useEffect(() =>{
         if (!id){
             return
@@ -58,10 +58,10 @@ export default function PlacesFormPage() {
             await axios.put('/places/:id', {
                 id, ...placeData
             })
-            setRedirect(true)
+            navigate("/account/places");
         } else {
             await axios.post('/places', placeData)
-            setRedirect(true)
+            navigate("/account/places");
         }
    
     }
