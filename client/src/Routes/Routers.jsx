@@ -7,7 +7,7 @@ import PlacesPage from "../Page/PlacesPage";
 import PlacesFormPage from "../Page/PlacesFormPage";
 import ListingPage from "../Page/ListingPage";
 import UserBookingPage from "../Page/UserBookingPage";
-import ListingBooking from "../Page/LessComponent/ListingBooking";
+import ListingBooking from "../Page/ListingBooking";
 
 
 
