@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { differenceInCalendarDays } from "date-fns";
 import axios from 'axios'
 import {UserContext} from '../../Context/UserContext'
+import { Navigate } from "react-router-dom";
 
 
 export default function BookingSidebar({place}) {

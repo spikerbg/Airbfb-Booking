@@ -8,6 +8,7 @@ import PlacesFormPage from "../Page/PlacesFormPage";
 import ListingPage from "../Page/ListingPage";
 import UserBookingPage from "../Page/UserBookingPage";
 import ListingBooking from "../Page/ListingBooking";
+import PrivateRoutes from "./PrivateRoutes";
 
 
 
@@ -19,13 +20,15 @@ export default function Routers() {
     <Route path="/home" element={<Home />} />
     <Route path="/login" element={<Login />} />
     <Route path="/signup" element={<Signup />} />
-    <Route path="/account" element={<Account />} />
-    <Route path="/account/places" element={<PlacesPage />} />
-    <Route path="/account/places/new" element={<PlacesFormPage />} />
-    <Route path="/account/places/:id" element={<PlacesFormPage />} />
     <Route path="/place/:id" element={<ListingPage />} />
-    <Route path="/account/bookings/" element={<UserBookingPage />} />
-    <Route path="/account/bookings/:id" element={<ListingBooking />} />
+    <Route element={<PrivateRoutes />}>
+      <Route path="/account" element={<Account />} />
+      <Route path="/account/places" element={<PlacesPage />} />
+      <Route path="/account/places/new" element={<PlacesFormPage />} />
+      <Route path="/account/places/:id" element={<PlacesFormPage />} />
+      <Route path="/account/bookings/" element={<UserBookingPage />} />
+      <Route path="/account/bookings/:id" element={<ListingBooking />} />
+      </Route>
    </Routes>
   )
 }

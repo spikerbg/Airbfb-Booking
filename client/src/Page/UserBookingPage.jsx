@@ -13,12 +13,12 @@ export default function BookingPage() {
   }, [])
 
   return (
-    <div className="mx-8">
+    <div className="mx-8 mb-8">
       <AccountNav />
-      <div>
+      <div className="">
         {bookings?.length > 0 && bookings.map(booking => (
 
-          <Link to={`/account/bookings/${booking._id}`} key={booking._id} className="flex gap-4 rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+          <Link to={`/account/bookings/${booking._id}`} key={booking._id} className="flex mb-4 gap-4 rounded-2xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
             {booking.place.photos.length > 0 && (
               <div className="w-60">
                 <img className='object-cover ' src={'http://localhost:3000/uploads/' + booking.place.photos[0]} alt='photos' />
