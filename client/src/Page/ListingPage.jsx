@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import axios from 'axios'
 import BookingSidebar from "./LessComponent/BookingSidebar"
+import ListingGallery from "./LessComponent/ListingGallery"
 
 
 export default function ListingPage() {
@@ -51,37 +52,18 @@ export default function ListingPage() {
                 </svg>
 
                 {place.address}</a>
-            <div className="relative">
-                <div className="grid gap-2 grid-cols-[2fr_1fr] rounded-2xl overflow-hidden">
-                    <div>
-                        {place.photos?.[0] && (
-                            <div>
-                                <img onClick={() => setShowAllPhotos(true)} className="aspect-square object-cover cursor-pointer" src={'http://localhost:3000/uploads/' + place.photos[0]} alt=""></img>
-                            </div>
-                        )}
-                    </div>
-                    <div className="grid gap-2 overflow-hidden">
-                        {place.photos?.[1] && (
-                            <img onClick={() => setShowAllPhotos(true)} className="cursor-pointer" src={'http://localhost:3000/uploads/' + place.photos[1]} alt=""></img>
-                        )}
-                        {place.photos?.[2] && (
-                            <img onClick={() => setShowAllPhotos(true)} className="cursor-pointer" src={'http://localhost:3000/uploads/' + place.photos[2]} alt=""></img>
-                        )}
-                    </div>
-                    <button onClick={() => setShowAllPhotos(true)} className="absolute buttom-8 right-0 py-2 px-4 bg-white rounded-2xl shadow shadow-md shadow-gray-300">Show more photos</button>
-                </div>
-            </div>
-            
+            <ListingGallery place={place}/>
+
             <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-2 mt-8">
                 <div>
-                <div className="my-4">
-                <h2 className="font-semibold text-2xl">Description</h2>
-                {place.description}
-            </div>
-                Check in {place.checkIn} <br />
-                Check out {place.checkOut}  <br />
-                Max Number of guests: {place.maxGuests}
-                
+                    <div className="my-4">
+                        <h2 className="font-semibold text-2xl">Description</h2>
+                        {place.description}
+                    </div>
+                    Check in {place.checkIn} <br />
+                    Check out {place.checkOut}  <br />
+                    Max Number of guests: {place.maxGuests}
+
                 </div>
                 <BookingSidebar place={place} />
             </div>
@@ -89,8 +71,8 @@ export default function ListingPage() {
                 Extra info
             </div>
             <div className="my-4 text-sm text-gray-500 leading-4">
-                    {place.extraInfo}
-                </div>
+                {place.extraInfo}
+            </div>
         </div>
     )
 }
