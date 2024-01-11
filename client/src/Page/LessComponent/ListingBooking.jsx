@@ -6,7 +6,7 @@ export default function ListingBooking() {
     const {id} = useParams()
   return (
     <div>
-
+      dsadsadsa{id}
     </div>
   )
 }
