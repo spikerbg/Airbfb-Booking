@@ -21,7 +21,7 @@ export default function ListingPage() {
 
 
     return (
-        <div className="mt-4 mb-4 mx-8 px-8 py-8">
+        <div className="mt-4 mb-4 mx-8 px-12 py-8 ">
             <h1 className="text-3xl">{place.title}</h1>
             <a className="flex gap-1 my-2 block font-semibold underline" target="_blank" href={'https://maps.google.com/?q=' + place.address} >
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -41,6 +41,21 @@ export default function ListingPage() {
                     Check in {place.checkIn} <br />
                     Check out {place.checkOut}  <br />
                     Max Number of guests: {place.maxGuests}
+                    <div className="text-2xl font-semibold mt-4">
+    Perks
+</div>
+                    <div className="grid grid-cols-2 gap-2 my-4">
+                    {place.perks && place.perks.map((perk, index) => (
+        <div key={index} className="flex items-center gap-2">
+            {/* You can customize the styling and layout of each perk here */}
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+            </svg>
+            {perk}
+        </div>
+    ))}
+                    </div>
 
                 </div>
                 <BookingSidebar place={place} />
@@ -51,6 +66,7 @@ export default function ListingPage() {
             <div className="my-4 text-sm text-gray-500 leading-4">
                 {place.extraInfo}
             </div>
+  
         </div>
     )
 }
