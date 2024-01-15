@@ -5,12 +5,16 @@ import { Link } from 'react-router-dom'
 export default function Home() {
 
   const [places,setPlaces] = useState([])
+
 useEffect(() =>{
   axios.get('/allplaces').then(response  =>{
   setPlaces(response.data)
   })
 
 },[])
+
+
+
 
   return (
     <div className='my-8 gap-4 gap-y-8 px-8 grid grid-cols-4 md:grid-cols-3 lg:grid-cols-4'>

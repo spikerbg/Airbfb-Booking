@@ -16,7 +16,9 @@ export default function Header() {
     setUser(null)
     
  }
+ 
   const location = useLocation();
+
 
   // List of routes where the header should be hidden
   // const routesWithoutHeader = ['/login', '/signup'];
@@ -36,7 +38,14 @@ export default function Header() {
         <span className='font-bold text-xl'>Airbfb</span>
         </Link>
         <div className='flex gap-4 border border-gray-300 rounded-full py-2 px-4 shadow-md shadow-gray-300'>
-        <div>Anywere</div>
+        <div>
+        <input
+                type="search"
+                placeholder="Place"
+                className=" bg-transparent w-full focus:outline-none cursor-pointer placeholder:text-textColor"
+
+              />
+        </div>
         <div className='border-l border-gray-300'></div>
         <div>Any week</div>
         <div className='border-l border-gray-300'></div>
