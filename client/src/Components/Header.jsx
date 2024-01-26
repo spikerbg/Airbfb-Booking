@@ -28,7 +28,8 @@ export default function Header() {
   }
 
   const search = () => {
-    navigate(`/search?location=${searchInpute}&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&noOfGuests=${noOfGuests}`);
+    navigate(`/search?location=${searchInpute}&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&noOfGuests=${noOfGuests}`)
+    setSearchInpute("");
   };
 
   const selectionRange = {
@@ -77,10 +78,6 @@ export default function Header() {
 
             />
           </div>
-          <div className='border-l border-gray-300'></div>
-          <div>Any week</div>
-          <div className='border-l border-gray-300'></div>
-          <div>Add guests</div>
           <button className='bg-primary text-white p-2 rounded-full'>
             <FaSearch />
           </button>
