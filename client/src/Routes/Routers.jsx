@@ -10,6 +10,7 @@ import UserBookingPage from "../Page/UserBookingPage";
 import ListingBooking from "../Page/ListingBooking";
 import PrivateRoutes from "./PrivateRoutes";
 import Test from "../Page/Test";
+import SearchPage from "../Page/SearchPage";
 
 
 
@@ -23,6 +24,7 @@ export default function Routers() {
     <Route path="/signup" element={<Signup />} />
     <Route path="/place/:id" element={<ListingPage />} />
     <Route path="/test" element={<Test />} />
+    <Route path="/search" element={<SearchPage />} />
 
     <Route element={<PrivateRoutes />}>
       <Route path="/account" element={<Account />} />

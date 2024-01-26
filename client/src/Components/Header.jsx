@@ -22,6 +22,10 @@ export default function Header() {
     setEndDay(ranges.selection.endDate)
   }
 
+  const resetInpute = () =>{
+    setSearchInpute("")
+  }
+
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
@@ -102,7 +106,7 @@ export default function Header() {
       </header>
       {searchInpute &&
         (
-          <div className='flex flex-col mx-auto items-center z-1'>
+          <div className='flex flex-col mx-auto items-center z-1 shadow-lg'>
             <DateRangePicker ranges={[selectionRange]}
               minDay={new Date()}
               rangeColors={["#f27a8a"]}
@@ -124,8 +128,8 @@ export default function Header() {
               </div>
 
             </div>
-            <div className='flex justify-between g-4 w-1/4'>
-              <button className='text-white bg-[#f27a8a] hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center'>Cancel</button>
+            <div className='flex justify-between g-4 w-1/4 mb-4'>
+              <button onClick={resetInpute} className='text-white bg-[#f27a8a] hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center'>Cancel</button>
               <button className='text-white bg-primary hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center'>Search</button>
               </div>
           </div>
