@@ -16,6 +16,7 @@ export default function Header() {
   const [startDate, setStartDay] = useState(new Date())
   const [endDate, setEndDay] = useState(new Date())
   const [noOfGuests, setNoOfGuests] = useState(1)
+  const navigate = useNavigate()
 
   const handleSelect = (ranges) => {
     setStartDay(ranges.selection.startDate)
@@ -26,6 +27,10 @@ export default function Header() {
     setSearchInpute("")
   }
 
+  const search = () => {
+    navigate(`/search?location=${searchInpute}&startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}&noOfGuests=${noOfGuests}`);
+  };
+
   const selectionRange = {
     startDate: startDate,
     endDate: endDate,
@@ -33,7 +38,7 @@ export default function Header() {
   }
 
 
-  const navigate = useNavigate()
+
   const logout = async () => {
     await axios.post('/logout')
     setTimeout(() => { navigate("/"); }, 0)
@@ -130,7 +135,7 @@ export default function Header() {
             </div>
             <div className='flex justify-between g-4 w-1/4 mb-4'>
               <button onClick={resetInpute} className='text-white bg-[#f27a8a] hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center'>Cancel</button>
-              <button className='text-white bg-primary hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center'>Search</button>
+              <button onClick={search} className='text-white bg-primary hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center'>Search</button>
               </div>
           </div>
         )}
