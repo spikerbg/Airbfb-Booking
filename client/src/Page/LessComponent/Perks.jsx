@@ -13,7 +13,7 @@ export default function Perks({ selected, onChange }) {
     <div className="grid grid-cols-2 gap-2 mb-4">
       <div className="flex gap-2 items-center">
         <input
-          id="checkbox-2"
+          id="checkbox-1"
           type="checkbox"
           checked={selected.includes('Wifi')}
           defaultValue=""
@@ -22,7 +22,7 @@ export default function Perks({ selected, onChange }) {
           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600"
         />
         <label
-          htmlFor="checkbox-2"
+          htmlFor="checkbox-1"
           className="border p-4 flex rounded-2xl cursor-pointer gap-2 item-center text-gray-900"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -55,7 +55,7 @@ export default function Perks({ selected, onChange }) {
       </div>
       <div className="flex gap-2 items-center">
         <input
-          id="checkbox-2"
+          id="checkbox-3"
           type="checkbox"
           checked={selected.includes('TV')}
           defaultValue=""
@@ -64,7 +64,7 @@ export default function Perks({ selected, onChange }) {
           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600"
         />
         <label
-          htmlFor="checkbox-2"
+          htmlFor="checkbox-3"
           className="border p-4 flex rounded-2xl cursor-pointer gap-2 item-center text-gray-900"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -76,7 +76,7 @@ export default function Perks({ selected, onChange }) {
       </div>
       <div className="flex gap-2 items-center">
         <input
-          id="checkbox-2"
+          id="checkbox-4"
           type="checkbox"
           checked={selected.includes('Pets')}
           defaultValue=""
@@ -85,7 +85,7 @@ export default function Perks({ selected, onChange }) {
           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600"
         />
         <label
-          htmlFor="checkbox-2"
+          htmlFor="checkbox-4"
           className="border p-4 flex rounded-2xl cursor-pointer gap-2 item-center text-gray-900"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -98,7 +98,7 @@ export default function Perks({ selected, onChange }) {
       </div>
       <div className="flex gap-2 items-center">
         <input
-          id="checkbox-2"
+          id="checkbox-5"
           type="checkbox"
           checked={selected.includes('PrivateEnterance')}
           defaultValue=""
@@ -107,7 +107,7 @@ export default function Perks({ selected, onChange }) {
           className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600"
         />
         <label
-          htmlFor="checkbox-2"
+          htmlFor="checkbox-5"
           className="border p-4 flex rounded-2xl cursor-pointer gap-2 item-center text-gray-900"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
