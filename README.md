@@ -7,7 +7,7 @@ Soon will be upload on server.
 
 ## Screenshots
 
-![App Screenshot](https://i.ibb.co/QFdCQQ0/Airbfb.png)
+![Airbnb Image](https://i.postimg.cc/3NTXXKDS/Airbfb.png)
 ![App Screenshot](https://i.ibb.co/zbsHTQK/Airbfb2.png)
 ![App Screenshot](https://i.ibb.co/P5pypRR/Airbfb3.png)
 ![App Screenshot](https://i.ibb.co/t4tyCZR/Airbfb4.png)
